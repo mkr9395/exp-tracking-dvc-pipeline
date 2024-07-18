@@ -2,7 +2,7 @@ feature_engineering:
   n_components: 2
 
 model_training:
-  n_estimators : 60
-  max_depth: 5
-  bootstrap : true
-  criterion : gini
+  n_estimators: 8
+  max_depth: 2
+  bootstrap: true
+  criterion: gini

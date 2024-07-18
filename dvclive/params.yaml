@@ -1,5 +1,5 @@
 feature_engineering_n_components: 2
-model_training_n_estimators: 60
-model_training_max_depth: 5
+model_training_n_estimators: 8
+model_training_max_depth: 2
 model_training_bootstrap: true
 model_training_criterion: gini
