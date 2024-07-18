@@ -1,0 +1,5 @@
+feature_engineering_n_components: 2
+model_training_n_estimators: 50
+model_training_max_depth: 10
+model_training_bootstrap: true
+model_training_criterion: entropy

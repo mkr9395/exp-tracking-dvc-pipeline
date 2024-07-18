@@ -18,7 +18,7 @@ bootstrap = params['model_training']['bootstrap']
 criterion = params['model_training']['criterion']
 
 
-train = pd.read_csv('.data/processed/train_proceesed.csv')
+train = pd.read_csv('./data/processed/train_processed.csv')
 
 # seperate X_train and y_train
 
@@ -33,4 +33,4 @@ rf.fit(X_train,y_train)
 
 # save the model
 
-pickle.dump(rf,'model.pkl','wb')
+pickle.dump(rf,open('model.pkl','wb'))

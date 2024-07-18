@@ -6,8 +6,8 @@ from sklearn.decomposition import PCA
 import os
 import yaml
 
-train = pd.read_csv('.data/raw/train.csv')
-test = pd.read_csv('.data/raw/test.csv')
+train = pd.read_csv('./data/raw/train.csv')
+test = pd.read_csv('./data/raw/test.csv')
 
 # read from params.yaml file
 # load parameters
@@ -45,10 +45,10 @@ X_test_pca = pca.transform(X_test_scaled)
 
 # Combine processed features and target column
 
-train_processed = pd.DataFrame(X_train_pca,columns=[f'PC{i+1} for i in range(n_components)'])
+train_processed = pd.DataFrame(X_train_pca,columns=[f'PC{i+1}' for i in range(n_components)])
 train_processed['Placed'] = y_train.reset_index(drop=True)
 
-test_processed = pd.DataFrame(X_test_pca,columns=[f'PC{i+1} for i in range(n_components)'])
+test_processed = pd.DataFrame(X_test_pca,columns=[f'PC{i+1}' for i in range(n_components)])
 test_processed['Placed'] = y_test.reset_index(drop=True)
 
 

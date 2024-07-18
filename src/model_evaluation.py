@@ -23,39 +23,44 @@ rf = pickle.load(open('model.pkl','rb'))
 
 y_pred= rf.predict(X_test)
 
-# calculate metrics
-accuracy = accuracy_score(y_test,y_pred)
-precision = precision_score(y_test,y_pred)
-recall = recall_score(y_test,y_pred)
-f1 = f1_score(y_test,y_pred)
-
 
 # load parametrs from logging
 
 with open('params.yaml', 'r') as file:
     params = yaml.safe_load(file)
+
+
+# calculate metrics
+
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
     
 # log metrics (exp tracking) and parameters using dvclive
 
 with Live(save_dvc_exp=True) as live:
-    live.log_metric('accuracy',accuracy_score(y_test,y_pred))
-    live.log_metric('precision', precision_score(y_test,y_pred))
-    live.log_metric('recall', recall_score(y_test,y_pred))
-    live.log_metric('f1', f1_score(y_test,y_pred))
+    live.log_metric('accuracy', accuracy)
+    live.log_metric('precision', precision)
+    live.log_metric('recall', recall)
+    live.log_metric('f1', f1)
 
     for param, value in params.items():
-        for key, value in value.items():
+        for key, val in value.items():
             live.log_param(f'{param}_{key}', val)
             
 
-# save the metrics to a json file for comparibility with DVC
-
+# Save the metrics to a JSON file for comparability with DVC
 metrics = {
-    'accuracy' : accuracy,
-    'precision' : precision,
-    'recall' : recall,
-    'f1_score' : f1_score
+    'accuracy': accuracy,
+    'precision': precision,
+    'recall': recall,
+    'f1': f1
 }
 
-with open('metrics.json','w') as f:
-    json.dump(metrics, f, indent = 4)
+try:
+    with open('metrics.json', 'w') as f:
+        json.dump(metrics, f, indent=4)
+except TypeError as e:
+    print("Serialization error:", e)
+    print("Metrics dictionary contains non-serializable values.")
