@@ -57,14 +57,14 @@ stages:
     params:
       params.yaml:
         model_training.bootstrap: true
-        model_training.criterion: entropy
-        model_training.max_depth: 10
-        model_training.n_estimators: 50
+        model_training.criterion: gini
+        model_training.max_depth: 5
+        model_training.n_estimators: 60
     outs:
     - path: model.pkl
       hash: md5
-      md5: f30c6e16e61babb2ccc05c003e53cf6f
-      size: 158709
+      md5: 401be5c91b156c70e896060d7986b824
+      size: 115760
   evaluate_model:
     cmd: python src/model_evaluation.py
     deps:
@@ -74,8 +74,8 @@ stages:
       size: 858
     - path: model.pkl
       hash: md5
-      md5: f30c6e16e61babb2ccc05c003e53cf6f
-      size: 158709
+      md5: 401be5c91b156c70e896060d7986b824
+      size: 115760
     - path: src/model_evaluation.py
       hash: md5
       md5: 5a9af72b09835481473d8e33e3a82ef7
@@ -84,11 +84,11 @@ stages:
       params.yaml:
         feature_engineering.n_components: 2
         model_training.bootstrap: true
-        model_training.criterion: entropy
-        model_training.max_depth: 10
-        model_training.n_estimators: 50
+        model_training.criterion: gini
+        model_training.max_depth: 5
+        model_training.n_estimators: 60
     outs:
     - path: metrics.json
       hash: md5
-      md5: 5020674970f97523c1b3f19c440680be
-      size: 116
+      md5: 490823113d63c59545f854040ef73f78
+      size: 129
